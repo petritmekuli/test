@@ -12,7 +12,7 @@ docker-compose run --rm composer create-project laravel/laravel .
 docker-compose run --rm php /var/www/html/artisan migrate
 
 #Maybe add some users using tinker
-docker-compose exec -it php /var/www/html/artisan tinker
+#docker-compose exec -it php /var/www/html/artisan tinker
 
 #Connenct to mysql using command line interface(cli)
 #mysql -u user -p -h 0.0.0.0 -P 3307
