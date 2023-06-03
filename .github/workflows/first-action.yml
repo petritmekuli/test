@@ -64,11 +64,10 @@ jobs:
         
       - name: Generate app key
         run: |
-          cd src
           echo "-----------------------"
-          echo ${{secrets.ENV_FILE_CONTENTS }}
+          echo ${{ secrets.ENV_FILE_CONTENTS }}
           echo "-----------------------"
-          echo ${{secrets.ENV_FILE_CONTENTS }} > .env
+          echo "${{ secrets.ENV_FILE_CONTENTS }}" > .env
           php artisan key:generate
         
       - name: Build and create the php image and container
