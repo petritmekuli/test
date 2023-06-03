@@ -21,9 +21,6 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       
-      - name: Check working directory
-        run: ls
-        
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       
@@ -34,9 +31,6 @@ jobs:
         run: |
           cd src
           composer install
-      
-      - name: Check if Docker is installed
-        run: docker --version
       
 #       - name: Create Docker laravel volume
 #         run: docker volume create laravel
@@ -66,7 +60,6 @@ jobs:
         run: |
           cd src
           echo "${{ secrets.ENV_FILE_CONTENTS }}" > .env
-          cat .env
           php artisan key:generate
         
       - name: Build and create the php image and container
@@ -75,7 +68,6 @@ jobs:
           docker run -d \
             --name php_container \
             -v $(pwd)/src:/var/www/html \
-            -p 9000:9000 \
             php-app
       
 #       - name: Create the composer container
