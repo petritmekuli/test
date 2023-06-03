@@ -1,0 +1,41 @@
+#add cache functionality in the future
+name: unit-testing
+on:
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      
+      - uses: actions/checkout@v3
+      
+      - name: Check working directory after checkout@v3
+        run: ls
+        
+      - name: Change working directory && Install Composer dependencies
+        run: |
+          cd src
+          composer install
+        
+      - name: Generate app key
+        run: |
+          cd src
+          echo "${{ secrets.ENV_FILE_CONTENTS }}" > .env
+          php artisan key:generate
+        
+      - name: Build and create the php image and container
+        run: |
+          docker build -t php-app .
+          docker run -d \
+            --name php_container \
+            -v $(pwd)/src:/var/www/html \
+            php-app
+      
+      - name: Test application
+        run: docker exec php_container php /var/www/html/artisan test
+
