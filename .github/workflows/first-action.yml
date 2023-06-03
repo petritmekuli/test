@@ -30,8 +30,10 @@ jobs:
       - name: Check working directory after checkout@v3
         run: ls
         
-      - name: Install Composer dependencies
-        run: composer install
+      - name: Change working directory && Install Composer dependencies
+        run: |
+          cd src
+          composer install
       
       - name: Check if Docker is installed
         run: docker --version
