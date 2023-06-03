@@ -65,7 +65,8 @@ jobs:
       - name: Generate app key
         run: |
           cd src
-          php artisan key:generate
+          ls -la | grep "env"
+          php artisan key:generate --env=.env.example
         
       - name: Build and create the php image and container
         run: |
