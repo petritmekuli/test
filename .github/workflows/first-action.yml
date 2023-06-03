@@ -62,6 +62,11 @@ jobs:
 #           --network laravel \
 #           mysql:8
         
+      - name: Generate app key
+        run: |
+          cd src
+          php artisan key:generate
+        
       - name: Build and create the php image and container
         run: |
           docker build -t php-app .
