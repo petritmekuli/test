@@ -65,6 +65,9 @@ jobs:
       - name: Generate app key
         run: |
           cd src
+          echo "-----------------------"
+          echo "$ENV_FILE_CONTENTS"
+          echo "-----------------------"
           echo "$ENV_FILE_CONTENTS" > .env
           php artisan key:generate
         
