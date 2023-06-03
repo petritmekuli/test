@@ -37,6 +37,9 @@ jobs:
       
       - name: Check if Docker is installed
         run: docker --version
+      
+#       - name: Create Docker laravel volume
+#         run: docker volume create laravel
         
 #       - name: Create nginx container
 #         run: docker run -d \
@@ -65,7 +68,6 @@ jobs:
             --name php_container \
             -v $(pwd)/src:/var/www/html \
             -p 9000:9000 \
-            --network laravel \
             php-app
       
 #       - name: Create the composer container
