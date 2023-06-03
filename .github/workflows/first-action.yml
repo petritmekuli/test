@@ -63,7 +63,8 @@ jobs:
 #           mysql:8
         
       - name: Build and create the php image and container
-        run: docker build -t php-app . &&
+        run: |
+          docker build -t php-app .
           docker run -d \
             --name php_container \
             -v $(pwd)/src:/var/www/html \
