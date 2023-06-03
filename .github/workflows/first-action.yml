@@ -65,7 +65,7 @@ jobs:
       - name: Generate app key
         run: |
           echo "-----------------------"
-          echo ${{ secrets.ENV_FILE_CONTENTS }}
+          echo "${{ secrets.ENV_FILE_CONTENTS }}"
           echo "-----------------------"
           echo "${{ secrets.ENV_FILE_CONTENTS }}" > .env
           php artisan key:generate
