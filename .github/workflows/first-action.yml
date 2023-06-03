@@ -66,9 +66,9 @@ jobs:
         run: |
           cd src
           echo "-----------------------"
-          echo "$ENV_FILE_CONTENTS"
+          echo ${{secrets.ENV_FILE_CONTENTS }}
           echo "-----------------------"
-          echo "$ENV_FILE_CONTENTS" > .env
+          echo ${{secrets.ENV_FILE_CONTENTS }} > .env
           php artisan key:generate
         
       - name: Build and create the php image and container
